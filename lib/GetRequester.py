@@ -1,13 +1,21 @@
 import requests
 import json
 
-class GetRequester:
 
+class GetRequester:
     def __init__(self, url):
         self.url = url
 
     def get_response_body(self):
-        pass
+        URL = self.url
+
+        response = requests.get(URL)
+        return response.content
 
     def load_json(self):
-        pass
+        data_list = []
+        data = json.loads(self.get_response_body())
+        for data_point in data:
+            data_list.append(data_point)
+
+        return data_list
